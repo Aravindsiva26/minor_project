@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    <title>Diabetes Detection</title>
+    <script src="https://cdn.anychart.com/releases/8.0.1/js/anychart-core.min.js"></script>
+    <script src="https://cdn.anychart.com/releases/8.0.1/js/anychart-pie.min.js"></script>
+  </head>
+  <style>
+    body {
+        margin-top: 64px;
+        background: linear-gradient(to bottom right, #cce7ff, #80c1ff); 
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        height: 100vh; /* Ensure the body takes the full height */
+        font-family: "serif";
+      }
+    
+    .container {
+      background-color: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      color: #007bff;
+      text-transform: uppercase;
+      font-size: 2rem;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    form {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+      flex: 1 1 45%;
+      padding: 10px;
+    }
+
+    label {
+      font-weight: bold;
+      color: #333;
+    }
+
+    .form-description {
+      font-size: 0.8rem;
+      color: gray;
+      margin-top: 5px;
+    }
+
+    input, select {
+      padding: 10px;
+      border: 1px solid #ced4da;
+      border-radius: 8px;
+      width: 100%;
+      box-shadow: none;
+      transition: box-shadow 0.3s ease;
+    }
+
+    input:focus, select:focus {
+      box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 15px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      transition: background-color 0.3s ease;
+      width: 100%;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .result {
+      margin-top: 30px;
+      font-weight: bold;
+      text-align: center;
+      font-size: 1.5rem;
+    }
+
+    /* Responsive for smaller devices */
+    @media screen and (max-width: 768px) {
+      .form-group {
+        flex: 1 1 100%;
+      }
+    }
+
+    /* Custom styling for select inputs */
+    .custom-select {
+      appearance: none;
+      padding: 10px;
+      background: #fff;
+      border: 1px solid #ced4da;
+      border-radius: 8px;
+      transition: border-color 0.3s ease;
+    }
+
+    .custom-select:hover {
+      border-color: #007bff;
+    }
+
+    /* Adding icons for form inputs */
+    .input-group-prepend {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 10px;
+      background-color: #007bff;
+      border: 1px solid #ced4da;
+      border-radius: 8px 0 0 8px;
+      color: white;
+    }
+
+    .input-group input {
+      border-radius: 0 8px 8px 0;
+    }
+  </style>
+  <body class="bg-light">
+    <div class="container">
+      <h1>Diabetes Detection</h1>
+      <p class="text-center">Fill in the following details to predict the likelihood of having diabetes.</p>
+
+      <form class="needs-validation" method="post">
+        <div class="form-group">
+          <label for="age">Age</label>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <i class="bi bi-calendar"></i>
+            </div>
+            <input type="text" class="form-control" id="age" name="age" placeholder="Enter Age" required>
+          </div>
+          <p class="form-description">Age can affect diabetes risk, particularly after 45 years of age.</p>
+        </div>
+
+        <div class="form-group">
+          <label for="gender">Gender</label>
+          <select name="gender" class="custom-select" id="gender" required>
+            <option value="0">Choose...</option>
+            <option value="1">Male</option>
+            <option value="0">Female</option>
+          </select>
+          <p class="form-description">Gender may impact the likelihood of developing diabetes.</p>
+        </div>
+
+        <div class="form-group">
+          <label for="Polyuria">Polyuria</label>
+          <select name="Polyuria" class="custom-select" id="Polyuria" required>
+            <option value="0">Choose...</option>
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+          </select>
+          <p class="form-description">Frequent urination (polyuria) is a common symptom of diabetes.</p>
+        </div>
+
+        <div class="form-group">
+          <label for="Polydipsia">Polydipsia</label>
+          <select name="Polydipsia" class="custom-select" id="Polydipsia" required>
+            <option value="0">Choose...</option>
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+          </select>
+          <p class="form-description">Excessive thirst (polydipsia) can be an early indicator of diabetes.</p>
+        </div>
+
+        <div class="form-group">
+          <label for="Weight">Sudden Weight Loss</label>
+          <select name="Weight" class="custom-select" id="Weight" required>
+            <option value="0">Choose...</option>
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+          </select>
+          <p class="form-description">Sudden, unintentional weight loss can be a symptom of diabetes.</p>
+        </div>
+
+        <div class="form-group">
+          <label for="Weakness">Weakness</label>
+          <select name="Weakness" class="custom-select" id="Weakness" required>
+            <option value="0">Choose...</option>
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+          </select>
+          <p class="form-description">Feeling weak or tired can be related to high blood sugar levels.</p>
+        </div>
+
+        <div class="form-group">
+          <label for="Polyphagia">Polyphagia</label>
+          <select name="Polyphagia" class="custom-select" id="Polyphagia" required>
+            <option value="0">Choose...</option>
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+          </select>
+          <p class="form-description">Excessive hunger (polyphagia) is a possible sign of diabetes.</p>
+        </div>
+
+        <div class="form-group">
+          <label for="Thrush">Genital Thrush</label>
+          <select name="Thrush" class="custom-select" id="Thrush" required>
+            <option value="0">Choose...</option>
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+          </select>
+          <p class="form-description">Recurrent genital thrush can be a symptom of diabetes.</p>
+        </div>
+
+        <div class="form-group">
+          <label for="Blurring">Visual Blurring</label>
+          <select name="Blurring" class="custom-select" id="Blurring" required>
+            <option value="0">Choose...</option>
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+          </select>
+          <p class="form-description">Blurry vision may result from fluctuating blood sugar levels.</p>
+        </div>
+
+        <div class="form-group">
+          <label for="Itching">Itching</label>
+          <select name="Itching" class="custom-select" id="Itching" required>
+            <option value="0">Choose...</option>
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+          </select>
+          <p class="form-description">Frequent itching could indicate diabetes-related skin issues.</p>
+        </div>
+
+        <div class="form-group">
+          <label for="Irritability">Irritability</label>
+          <select name="Irritability" class="custom-select" id="Irritability" required>
+            <option value="0">Choose...</option>
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+          </select>
+          <p class="form-description">Mood swings and irritability can be related to fluctuating blood sugar levels.</p>
+        </div>
+
+        <div class="form-group">
+          <label for="Healing">Delayed Healing</label>
+          <select name="Healing" class="custom-select" id="Healing" required>
+            <option value="0">Choose...</option>
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+          </select>
+          <p class="form-description">Slow healing of wounds is a common diabetes symptom.</p>
+        </div>
+
+        <div class="form-group">
+          <label for="Paresis">Partial Paresis</label>
+          <select name="Paresis" class="custom-select" id="Paresis" required>
+            <option value="0">Choose...</option>
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+          </select>
+          <p class="form-description">Partial paresis (muscle weakness) may occur in advanced diabetes cases.</p>
+        </div>
+
+        <div class="form-group">
+          <label for="Stiffness">Muscle Stiffness</label>
+          <select name="Stiffness" class="custom-select" id="Stiffness" required>
+            <option value="0">Choose...</option>
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+          </select>
+          <p class="form-description">Muscle stiffness is a possible symptom of diabetes complications.</p>
+        </div>
+
+        <div class="form-group">
+          <label for="Alopecia">Alopecia</label>
+          <select name="Alopecia" class="custom-select" id="Alopecia" required>
+            <option value="0">Choose...</option>
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+          </select>
+          <p class="form-description">Hair loss (alopecia) can sometimes be linked to diabetes.</p>
+        </div>
+
+        <div class="form-group">
+          <label for="Obesity">Obesity</label>
+          <select name="Obesity" class="custom-select" id="Obesity" required>
+            <option value="0">Choose...</option>
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+          </select>
+          <p class="form-description">Obesity is a major risk factor for Type 2 diabetes.</p>
+        </div>
+
+        <div class="form-group">
+            <button class="btn btn-primary" type="submit">Predict</button>
+        </div>
+        
+        <!-- Result container forced to be on a new line -->
+        <div class="result-container text-center" style="display: block; width: 100%; margin-top: -15px;">
+            <h2 class="result">{{ value }}</h2>
+        </div>
+      </form>
+    </div>
+  </body>
+  <footer>
+    <p class='text-center' style='margin-top: 15px;'>&copy; 2024 Diabetes Detection App | Developed by Aravind Siva</p>
+  </footer>
+  <script>
+    if (document.querySelector(".result").innerText == "Yayyy!! You Don't have Diabetes") {
+      document.querySelector(".result").style.color = "Green";
+    } else {
+      document.querySelector(".result").style.color = "Red";
+    }
+  </script>
+</html>

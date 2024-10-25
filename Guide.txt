@@ -1,0 +1,37 @@
+2. Set Up a Python Virtual Environment (Recommended)
+
+It’s recommended to use a virtual environment to avoid conflicts with other Python projects. Run the following commands in your terminal or command prompt:
+
+# Install virtualenv if not installed
+pip install virtualenv
+
+# Create a virtual environment
+virtualenv diabetes-env
+
+# Activate the virtual environment
+# For Windows
+.\diabetes-env\Scripts\activate
+# For Mac/Linux
+source diabetes-env/bin/activate
+
+
+3. Install Required Python Libraries
+
+The project requires several Python packages, most of which are related to data processing, visualization, and machine learning. You can install them using pip.
+
+Here’s a list of the required modules and their installation commands:
+
+	•	Pandas: For data manipulation and analysis.
+	•	Numpy: For numerical computations.
+	•	Matplotlib and Seaborn: For plotting and visualization.
+	•	Scikit-learn: For machine learning models, evaluation metrics, and data preprocessing.
+	•	Plotly: For interactive visualizations.
+	•	LIME: For explainable AI.
+	•	Pickle: For saving and loading models.
+
+You can install all dependencies by running:
+
+
+    pip install pandas numpy matplotlib seaborn scikit-learn plotly lime pickle-mixin
+
+
